@@ -4,13 +4,18 @@
 type User @model {
   id: ID! @isUnique
   name: String
-  dateOfBirth: DateTime
-
-  # Uncomment below - you can declare relations between models like this
-
+  createdAt: DateTime!
+  updatedAt: DateTime!
   # posts: [Post!]! @relation(name: "UserPosts")
 }
 
+type Post @model {
+  id: ID! @isUnique
+  title: String!
+  body: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
 
 # Uncomment the model below as well
 
