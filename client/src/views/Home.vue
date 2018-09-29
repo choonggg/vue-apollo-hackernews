@@ -1,12 +1,16 @@
 <template>
   <div class="home">
     <section class="section">
-      <p v-if="loading">Loading...</p>
+      <p v-if="$apollo.queries.posts.loading">Loading...</p>
       <div
-        v-for="post in allPosts"
+        v-for="post in posts"
         :key="post.id"
         class="PostItem">
-        <h1>{{ post.title }}</h1>
+        <h1>
+          <router-link :to="{ name: 'PostEdit', params: { id: post.id } }">
+            {{ post.title }}
+          </router-link>
+        </h1>
         <p>{{ post.body }}</p>
       </div>
     </section>
@@ -19,19 +23,22 @@
 
 <script>
 import CreatePost from '@/components/CreatePost'
-import { ALL_POSTS_QUERY } from '@/query/post'
+import POSTS_ALL from '@/graph/PostsAll.gql'
 
 export default {
   name: 'home',
   data() {
     return {
-      allPosts: [],
+      posts: [],
       loading: 0
     }
   },
   apollo: {
-    allPosts: {
-      query: ALL_POSTS_QUERY
+    posts: {
+      query: POSTS_ALL,
+      update ({ allPosts }) {
+        return allPosts
+      },
     }
   },
   components: {

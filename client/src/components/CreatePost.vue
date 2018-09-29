@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import { CREATE_POST_MUTATION, ALL_POSTS_QUERY } from '@/query/post'
+import POSTS_ALL from '@/graph/PostsAll.gql'
+import CREATE_POST_MUTATION from '@/graph/PostCreate.gql'
 
 export default {
   name: 'CreatePost',
@@ -41,9 +42,9 @@ export default {
           body: this.body
         },
         update: (store, { data: { createPost } }) => {
-          const data = store.readQuery({ query: ALL_POSTS_QUERY })
+          const data = store.readQuery({ query: POSTS_ALL })
           data.allPosts.push( createPost )
-          store.writeQuery({ query: ALL_POSTS_QUERY, data })
+          store.writeQuery({ query: POSTS_ALL, data })
         }
       })
     }

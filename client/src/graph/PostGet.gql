@@ -1,0 +1,7 @@
+query GetPostQuery($id: ID!) {
+  Post(id: $id){
+    id
+    title
+    body
+  }
+}

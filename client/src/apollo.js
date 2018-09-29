@@ -6,7 +6,6 @@ import VueApollo from 'vue-apollo'
 
 Vue.use(VueApollo)
 
-
 const httpLink = new HttpLink({
   uri: "http://localhost:60000/simple/v1/cjmlei3ki00040157r3k1va1f",
 })

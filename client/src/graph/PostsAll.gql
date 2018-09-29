@@ -1,0 +1,7 @@
+query AllPostQuery {
+  allPosts {
+    id
+    title
+    body
+  }
+}
